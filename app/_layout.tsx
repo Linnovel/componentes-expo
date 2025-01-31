@@ -11,7 +11,6 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Text, View } from "react-native";
 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -19,12 +18,11 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 SplashScreen.preventAutoHideAsync();
 
 import "../global.css";
-import ThemedView from "@/presentation/shared/ThemedView";
-import ThemedText from "@/presentation/shared/ThemedText";
+import { allRoutes } from "@/constants/Routes";
 
 export default function RootLayout() {
   const backgroundColor = useThemeColor(
-    { light: "gray", dark: "green" },
+    { light: "gray", dark: "white" },
     "background"
   );
   const colorScheme = useColorScheme();
@@ -46,24 +44,34 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ backgroundColor, flex: 1 }}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <ThemedView>
-          <ThemedText className="mt-20" type="h1">
-            PRUEBA
+        {/* <ThemedView>
+          <ThemedText className="mt-20" type="h1" numberOfLines={1}
+          >
+            Hola Mundo
           </ThemedText>
-        </ThemedView>
-        {/* <Stack
-        screenOptions={{
-          headerShadowVisible: false,
-          contentStyle: {
-            backgroundColor: "pink",
-          },
-          headerStyle: {
-            backgroundColor: "pink",
-          },
-        }}
-      >
-        <Stack.Screen name="index" options={{ title: "Inicio" }} />s
-      </Stack> */}
+        </ThemedView> */}
+        <Stack
+          screenOptions={{
+            headerShadowVisible: false,
+            contentStyle: {
+              backgroundColor: backgroundColor,
+            },
+            headerStyle: {
+              backgroundColor: backgroundColor,
+            },
+          }}
+        >
+          <Stack.Screen name="index" options={{ title: "Inicio" }} />s
+          {allRoutes.map((route) => (
+            <Stack.Screen
+              key={route.name}
+              name={route.name}
+              options={{
+                title: route.title,
+              }}
+            />
+          ))}
+        </Stack>
       </ThemeProvider>
     </GestureHandlerRootView>
   );
