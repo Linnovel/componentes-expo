@@ -25,6 +25,7 @@ const ThemedView = ({
   return (
     // className="bg-light-background dark:bg-dark-background"
     <View
+      className={classname}
       style={[
         {
           backgroundColor,
@@ -34,7 +35,6 @@ const ThemedView = ({
         },
         style,
       ]}
-      className={classname}
     >
       {children}
     </View>

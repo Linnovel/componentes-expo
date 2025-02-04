@@ -22,7 +22,7 @@ import { allRoutes } from "@/constants/Routes";
 
 export default function RootLayout() {
   const backgroundColor = useThemeColor(
-    { light: "gray", dark: "white" },
+    { light: "gray", dark: "gray" },
     "background"
   );
   const colorScheme = useColorScheme();
@@ -61,7 +61,7 @@ export default function RootLayout() {
             },
           }}
         >
-          <Stack.Screen name="index" options={{ title: "Inicio" }} />s
+          <Stack.Screen name="index" options={{ title: "Inicio" }} />
           {allRoutes.map((route) => (
             <Stack.Screen
               key={route.name}
