@@ -7,6 +7,7 @@ interface Props extends TextProps {
   children: string;
   className?: string;
   type?: TextStyle;
+  text?: string;
 }
 
 const ThemedText = ({
